@@ -1,0 +1,46 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  width: 300px;
+  height: auto;
+  background-color: #485461;
+  background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
+  padding: 10px;
+}
+
+#display-area {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.answerArea, .inputArea {
+  text-align: right;
+  padding-bottom: 20px;
+}
+
+button {
+  font-size: 32px;
+  padding: 10px;
+  outline: none;
+  background-color: rgb(61 43 184);
+  border-radius: 5px;
+  border-style: none;
+}
+
+.button-area {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-template-rows: auto auto auto auto auto;
+  gap: 5px;
+  align-content: end;
+}
