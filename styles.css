@@ -3,6 +3,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 90vh;
+  font-family: 'Roboto', sans-serif;
 }
 
 .container {
@@ -19,13 +20,19 @@ body {
 #display-area {
   display: flex;
   flex-direction: column;
-  margin-top: 50px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  background-color: white;
+  border-radius: 5px;
 }
 
-.answerArea, .inputArea {
-  text-align: right;
-  padding-bottom: 20px;
+.inputArea {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 70px;
+  font-size: 3rem;
+  padding: 0 10px;
 }
 
 button {
