@@ -7,52 +7,62 @@ buttonArea.forEach(button => {
   button.addEventListener('click', () => {
 
     if (button.classList.contains('num') || (button.classList.contains('operator'))) {
-      displayArea.push(button.value)
-      const equationInput = displayArea.join('')
-      inputArea.textContent = equationInput
+        displayArea.push(button.value)
+        const equationInput = displayArea.join('')
+        inputArea.textContent = equationInput
     } 
-    
+  
     const equationInput = displayArea.join('')
 
     if (button.value === 'C') {
       clear()
     }
 
-    if (button.classList.contains('special')) {
-      const exp = equationInput ** 2
-      const round = Number(exp.toFixed(2))
-
-      calc(exp)
-
-      if (exp !== Math.floor(exp)) {
-        inputArea.textContent = round
-      } else {
-        inputArea.textContent = exp
-      }
-    }
 
     if (button.id === 'evaluate') {
       const answer = eval(equationInput)
       const round = Number(answer.toFixed(9))
-
-      calc(answer)
 
       if (round.toString().length > 11 || answer.toString().length > 11) {
         inputArea.style.fontSize = '2.75rem'
       }
 
       if (answer !== Math.floor(answer)) {
+        calc(round)
         inputArea.textContent = round
       } else {
+        calc(answer)
         inputArea.textContent = answer
       }
     }
+
+
+    if (button.classList.contains('exponent')) {
+      const exp = equationInput ** 2
+      const round = Number(exp.toFixed(2))
+
+      if (exp !== Math.floor(exp)) {
+        calc(round)
+        inputArea.textContent = round
+      } else {
+        calc(exp)
+        inputArea.textContent = exp
+      }
+    }
+
+    if (button.classList.contains('percent')) {
+      const percent = equationInput / 100
+      calc(percent)
+      inputArea.textContent = percent
+    }
+
 
     if (button.id === 'back') {
       displayArea.pop()
       let backup = displayArea.join('')
       inputArea.textContent = backup
     }
+
 
     if (displayArea.length === 12) {
       inputArea.style.fontSize = '2.75rem'
@@ -63,8 +73,10 @@ buttonArea.forEach(button => {
     } else if (displayArea.length === 15) {
       inputArea.style.fontSize = '2rem'
     } else if (displayArea.length > 16) {
+      displayArea.length = Math.min(displayArea.length, 16)
       return
     }
+
 
   })
 })
