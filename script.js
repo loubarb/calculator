@@ -15,14 +15,14 @@ buttonArea.forEach(button => {
     const equationInput = displayArea.join('')
 
     if (button.value === 'C') {
-      displayArea = []
-      inputArea.textContent = 0
-      inputArea.style.fontSize = ''
+      clear()
     }
 
     if (button.classList.contains('special')) {
-      const exp = equationInput ** equationInput
+      const exp = equationInput ** 2
       const round = Number(exp.toFixed(2))
+
+      calc(exp)
 
       if (exp !== Math.floor(exp)) {
         inputArea.textContent = round
@@ -34,6 +34,8 @@ buttonArea.forEach(button => {
     if (button.id === 'evaluate') {
       const answer = eval(equationInput)
       const round = Number(answer.toFixed(9))
+
+      calc(answer)
 
       if (round.toString().length > 11 || answer.toString().length > 11) {
         inputArea.style.fontSize = '2.75rem'
@@ -67,3 +69,15 @@ buttonArea.forEach(button => {
   })
 })
 
+
+function clear() {
+  displayArea = []
+  inputArea.textContent = 0
+  inputArea.style.fontSize = ''
+}
+
+function calc(answer) {
+  const stringify = answer.toString()
+  const answerArray = stringify.split('')
+  displayArea.splice(0, displayArea.length, ...answerArray)
+}
